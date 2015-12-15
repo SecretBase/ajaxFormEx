@@ -1,0 +1,61 @@
+$em-base: 16px;
+
+:root {
+  font-size: $em-base;
+}
+
+body {
+  background-color: #fafafa;
+  color: #424242;
+}
+
+aside {
+  float: left;
+  width: 20%;
+  background-color: #fff;
+  padding: 20px;
+  box-sizing: border-box;
+  height: 100vh;
+  overflow: auto;
+}
+
+main {
+  float: left;
+  width: 80%;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: rem(32);
+  margin: 0;
+  line-height: rem(48);
+  margin-bottom: rem(16);
+}
+
+h2 {
+  font-size: rem(24);
+  margin: 0;
+  margin-bottom: rem(16);
+  line-height: rem(32);
+}
+
+p {
+  font-size: rem(16);
+  margin: 0;
+  margin-bottom: rem(16);
+  line-height: rem(24);
+}
+
+section {
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+pre {
+  margin: rem(16px) 0;
+}
+
+.code-block {
+  padding: rem(20);
+}
+
