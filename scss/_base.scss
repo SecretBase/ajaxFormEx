@@ -4,12 +4,19 @@ $em-base: 16px;
   font-size: $em-base;
 }
 
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 body {
   background-color: #fafafa;
   color: #424242;
 }
 
 aside {
+  position: fixed;
   float: left;
   width: 20%;
   background-color: #fff;
@@ -22,6 +29,7 @@ aside {
 main {
   float: left;
   width: 80%;
+  margin-left: 20%;
   box-sizing: border-box;
 }
 
@@ -54,6 +62,10 @@ p {
   line-height: rem(24);
 }
 
+li {
+  line-height: rem(24);
+}
+
 section {
   padding: 20px;
   border-bottom: 1px solid #eee;
@@ -80,5 +92,31 @@ button {
   &:hover {
     background-color: #039BE5;
   }
+}
+
+.nav-index-menu {
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  a {
+    text-decoration: none;
+    color: #03A9F4;
+
+    &:hover {
+      color: #039BE5;
+      text-decoration: underline;
+    }
+  }
+
+  li {
+    margin-bottom: rem(10);
+  }
+
+
+
 }
 

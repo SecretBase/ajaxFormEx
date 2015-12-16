@@ -5,6 +5,7 @@
     <title>Ajax Form Extension</title>
 
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/styles/monokai_sublime.min.css">
+    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico">
     <link rel="stylesheet" type="text/css" href="./styles.css">
 
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
@@ -13,7 +14,7 @@
     <script type="text/javascript" src="./ajaxFormEx.js"></script>
 
 </head>
-<body>
+<body class="clearfix">
     <aside>
         <h2>Documentation Index</h2>
         <nav class="nav-index-menu">
@@ -21,6 +22,8 @@
                 <li><a href="#overview">Overview</a></li>
                 <li><a href="#installation">Installation</a></li>
                 <li><a href="#basic-usage">Basic Usage</a></li>
+                <li><a href="#inject-ajax-handler">Inject Ajax Handler</a></li>
+                <li><a href="#more-example">Examples</a></li>
             </ul>
         </nav>
     </aside>
@@ -31,6 +34,7 @@
                 <h2>Add some sugar to the jQuery ajax form request</h2>
                 <p>Sometime I am too lazy to write the same $.ajax() and its callback over and over and over again.</p>
                 <p>So I decide to write a plugin to handle this.</p>
+                <p>And Sorry for English. I quite not good at it....</p>
             </article>
         </section>
         <section id="installation">
@@ -47,7 +51,7 @@
         <section id="basic-usage">
             <h2>Basic Usage</h2>
 
-            <p>Binding Form you want to perform ajax request</p>
+            <p>Binding Form(s) you want to perform ajax request. It will perform a jquery $.ajax() for you when form onSubmit().</p>
 
             <p>It will take the action attribute and method attribute as a jquery $.ajax() url and method parameters respectively.</p>
 
@@ -70,7 +74,7 @@
             <p>Here is the list of options and callbacks.</p>
             <p>There will some new added callbacks ajaxHandler for use. Some of them will run by sequence.</p>
             <p>Debug option default as false. When you turn it on, plugin will console log out some message to let you know the sequence.</p>
-            <p><strong>Open the development console and click the below button try it out.</strong></p>
+            <p><strong>Open the development console and click the below button see what happen when debug is on.</strong></p>
             <form id="debug-form" action="./api/success.json">
                 <button>Try it out.</button>
             </form>
@@ -98,6 +102,65 @@
     },
     injectAjaxHandler: null
 });</code></pre>
+        </section>
+        <section id="inject-ajax-handler">
+            <h2>Inject Ajax Handler</h2>
+            <p>You will be wonder what is the use of the injectAjaxHandler option.</p>
+            <p>It will be a little bit crazy and hard to explain.</p>
+            <p>So let's take a use case as a example.</p>
+            <p>Let's say we have two form to perform ajax request. Both of them will redirect after success but one of this will alert message to user.</p>
+            <pre><code class="code-block html">&lt;form class="ajax-request" action="/path/to/somewhere" method="post">
+    &lt;input type="text" name="first_name">
+    &lt;input type="text" name="last_name">
+    &lt;button type="submit">Save&lt;/button>
+&lt;/form>
+&lt;form class="ajax-request" data-form-success="alertUser" action="/path/to/somewhere" method="post">
+    &lt;!-- This will  alert user -->
+    &lt;input type="text" name="first_name">
+    &lt;input type="text" name="last_name">
+    &lt;button type="submit">Save&lt;/button>
+&lt;/form>
+</code></pre>
+        <pre><code class="javascript code-block">// This is what I do to solve this problem by using this plugin.
+var generalAjaxHandler = {
+    successEnd: function (data, textStatus, jqXHR) {
+        console.log('!!!!!!Rediect!!!!!!');
+    }
+};
+
+var injectAjaxHandler {
+    alertUser: function (data, textStatus, jqXHR) {
+        alert('This is this injectAjaxHandler.');
+    }
+};
+
+$('ajax-request').ajaxFormEx({
+    ajaxHandler: generalAjaxHandler,
+    injectAjaxHandler: injectAjaxHandler
+});
+</code></pre>
+            <p>When you define a data attribute (data-form-success), The plugin will find run the function for that namespace (alertUser) you passed in to this plugin.</p>
+            <p><strong>Open the development console and click the below button see what's going on.</strong></p>
+            <form class="ajax-request" action="./api/success.json" method="post">
+                <button type="submit">Redirect</button>
+            </form>
+            <br>
+            <form class="ajax-request" action="./api/success.json" data-form-success="alertUser" method="post">
+                <button type="submit">!!!Alert!!!</button>
+            </form>
+            <br>
+            <p>Here is the data attribute list for injectAjaxHandler.</p>
+            <ul>
+                <li>form-beforesend</li>
+                <li>form-success</li>
+                <li>form-complete</li>
+                <li>form-error</li>
+            </ul>
+            <p><strong>Please note that all injectAjaxHandler function will run after the start callbacks (beforeSend, successStart, errorStart)  and before the end callbacks (successEnd, errorEnd, complete) in the sequence.</strong></p>
+        </section>
+        <section id="more-example">
+            <h2>More Example</h2>
+            <p>Under Construction...</p>
         </section>
     </main>
     <script type="text/javascript" src="./scripts.js"></script>
