@@ -9,10 +9,9 @@
                 beforeSend: function(jqXHR, settings) {},
                 successStart: function(data, textStatus, jqXHR) {},
                 successEnd: function(data, textStatus, jqXHR) {},
-                failStart: function(data, textStatus, jqXHR) {},
-                failEnd: function(data, textStatus, jqXHR) {},
                 complete: function(jqXHR, textStatus) {},
-                error: function(jqXHR, textStatus, errorThrown) {}
+                errorStart: function(jqXHR, textStatus, errorThrown) {},
+                errorEnd: function(jqXHR, textStatus, errorThrown) {}
             },
             injectAjaxHandler: null
         }, options);
@@ -96,17 +95,21 @@
                     console.log('---------- Error Start ---------------');
                 }
 
-                if (typeof afxc.ajaxHandler.error === 'function') {
-                    afxc.ajaxHandler.error.call(this, jqXHR, textStatus, errorThrown);
+                if (typeof afxc.ajaxHandler.errorStart === 'function') {
+                    afxc.ajaxHandler.errorStart.call(this, jqXHR, textStatus, errorThrown);
                 }
 
                 var formError = this.data('form-error');
 
                 if (typeof formError !== 'undefined' && typeof afxc.injectAjaxHandler[formError] === 'function') {
 
-                    if (afxc.injectAjaxHandler[formError].call(this, data, textStatus, jqXHR) === false) {
+                    if (afxc.injectAjaxHandler[formError].call(this, jqXHR, textStatus, errorThrown) === false) {
                         return;
                     }
+                }
+
+                if (typeof afxc.ajaxHandler.errorEnd === 'function') {
+                    afxc.ajaxHandler.errorEnd.call(this, jqXHR, textStatus, errorThrown);
                 }
 
                 if (afxc.debug) {
