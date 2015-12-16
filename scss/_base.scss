@@ -39,6 +39,14 @@ h2 {
   line-height: rem(32);
 }
 
+h3 {
+  font-size: rem(18);
+  margin: 0;
+  margin-bottom: rem(0);
+  line-height: rem(24);
+  font-weight: bold;
+}
+
 p {
   font-size: rem(16);
   margin: 0;
@@ -57,5 +65,20 @@ pre {
 
 .code-block {
   padding: rem(20);
+}
+
+button {
+  display: inline-block;
+  background-color: #03A9F4;
+  padding: rem(8);
+  color: #fff;
+  border: 1px solid #039BE5;
+  border-radius: em(3, 16);
+  font-size: rem(16);
+  box-shadow: 0 em(3, 16) em(4, 16) 0 rgba(0,0,0,.26);
+
+  &:hover {
+    background-color: #039BE5;
+  }
 }
 

@@ -3,18 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Ajax Form Extension</title>
-    
+
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/styles/monokai_sublime.min.css">
     <link rel="stylesheet" type="text/css" href="./styles.css">
 
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js"></script>
-    
+
 </head>
 <body>
     <aside>
+        <h2>Documentation Index</h2>
         <nav class="nav-index-menu">
-            <ul></ul>
+            <ul>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#installation">Installation</a></li>
+                <li><a href="#basic-usage">Basic Usage</a></li>
+            </ul>
         </nav>
     </aside>
     <main>
@@ -30,9 +35,67 @@
             <h2>Installation</h2>
             <p>Load jQuery before load the ajaxFormEx.js</p>
 
-<pre><code class="html code-block"> &lt;script type="text/javascript" src="jquery.js">&lt;/script>
+
+            <pre><code class="html code-block"> &lt;script type="text/javascript" src="jquery.js">&lt;/script>
  &lt;script type="text/javascript" src="ajaxFormEx.js">&lt;/script> </code></pre>
 
+
+
+        </section>
+        <section id="basic-usage">
+            <h2>Basic Usage</h2>
+
+            <p>Binding Form you want to perform ajax request</p>
+
+            <p>It will take the action attribute and method attribute as a jquery $.ajax() url and method parameters respectively.</p>
+
+            <p>And it will auto do the form serialize() for you and pass to $.ajax() data parameter.</p>
+
+
+            <h3>HTML:</h3>
+            <pre><code class="html code-block">&lt;form action="/path/to/somewhere" method="post">
+    &lt;input type="text" name="first_name" value="some var">
+    &lt;input type="text" name="last_name" value="some var">
+&lt;/form></code></pre>
+
+
+            <h3>Javascript:</h3>
+            <pre><code class="javascript code-block">$('form').ajaxFormEx();</code></pre>
+
+        </section>
+        <section>
+            <h2>Options and Callbacks</h2>
+            <p>Here is the list of options and callbacks.</p>
+            <p>There will some new added callbacks ajaxHandler for use. Some of them will run by sequence.</p>
+            <p>Debug option default as false. When you turn it on, plugin will console log out some message to let you know the sequence.</p>
+            <p><strong>Open the development console and click the below button try it out.</strong></p>
+            <form id="debug-form" action="./api/success.json">
+                <button>Try it out.</button>
+            </form>
+            <pre><code class="javascript code-block">$('form').ajaxFormEx({
+    debug: false,
+    ajaxHandler: {
+        beforeSend: function(jqXHR, settings) {
+            // Do Something
+        },
+        successStart: function(data, textStatus, jqXHR) {
+            // Do Something
+        },
+        successEnd: function(data, textStatus, jqXHR) {
+            // Do Something
+        },
+        complete: function(jqXHR, textStatus) {
+            // Do Something
+        },
+        errorStart: function(jqXHR, textStatus, errorThrown) {
+            // Do Something
+        },
+        errorEnd: function(jqXHR, textStatus, errorThrown) {
+            // Do Something
+        }
+    },
+    injectAjaxHandler: null
+});</code></pre>
         </section>
     </main>
     <script type="text/javascript" src="./scripts.js"></script>
