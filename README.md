@@ -1,4 +1,7 @@
-# ajaxFormEx
-Jquery ajax form extension
+# Ajax Form Extension
+Add some sugar to the jQuery ajax form request.
 
-## gh-pages is coming
+Increase the reuse of the code, more flexible to handle events.
+
+## Documentation
+http://secretbase.github.io/ajaxFormEx/
