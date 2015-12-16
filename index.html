@@ -75,7 +75,7 @@
             <p>There will some new added callbacks ajaxHandler for use. Some of them will run by sequence.</p>
             <p>Debug option default as false. When you turn it on, plugin will console log out some message to let you know the sequence.</p>
             <p><strong>Open the development console and click the below button see what happen when debug is on.</strong></p>
-            <form id="debug-form" action="./api/success.json">
+            <form id="debug-form" action="./api/success.json" method="get">
                 <button>Try it out.</button>
             </form>
             <pre><code class="javascript code-block">$('form').ajaxFormEx({
@@ -141,11 +141,11 @@ $('ajax-request').ajaxFormEx({
 </code></pre>
             <p>When you define a data attribute (data-form-success), The plugin will find run the function for that namespace (alertUser) you passed in to this plugin.</p>
             <p><strong>Open the development console and click the below button see what's going on.</strong></p>
-            <form class="ajax-request" action="./api/success.json" method="post">
+            <form class="ajax-request" action="./api/success.json" method="get">
                 <button type="submit">Redirect</button>
             </form>
             <br>
-            <form class="ajax-request" action="./api/success.json" data-form-success="alertUser" method="post">
+            <form class="ajax-request" action="./api/success.json" data-form-success="alertUser" method="get">
                 <button type="submit">!!!Alert!!!</button>
             </form>
             <br>
