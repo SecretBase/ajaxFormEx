@@ -4,4 +4,8 @@ $(document).ready(function(e) {
         hljs.highlightBlock(block);
     });
 
+    $('#debug-form').ajaxFormEx({
+        debug: true
+    });
+
 });
