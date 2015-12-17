@@ -13,7 +13,7 @@
 
     <script type="text/javascript" src="./ajaxFormEx.js"></script>
 
-    <script>
+    <!--script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -22,7 +22,7 @@
       ga('create', 'UA-71543426-1', 'auto');
       ga('send', 'pageview');
 
-    </script>
+    </script-->
 
 </head>
 <body class="clearfix">
@@ -171,7 +171,12 @@ $('ajax-request').ajaxFormEx({
         </section>
         <section id="more-example">
             <h2>More Example</h2>
-            <p>Under Construction...</p>
+            <p>Two action url by using the same form</p>
+            <form class="ajax-request" action="./api/success.json" method="get">
+                <button type="submit">This using the action url</button>
+                <br><br>
+                <button class="change-url" data-url="./api/fail.json">Other Url on this button</button>
+            </form>
         </section>
     </main>
     <script type="text/javascript" src="./scripts.js"></script>
