@@ -27,7 +27,7 @@
                     afxc.ajaxHandler.beforeSend.call(this, jqXHR, settings);
                 }
 
-                var formBeforesend = this.data('form-beforesend');
+                var formBeforesend = this.attr('data-form-beforesend');
 
                 if (typeof formBeforesend !== 'undefined' && typeof afxc.injectAjaxHandler[formBeforesend] === 'function') {
                     afxc.injectAjaxHandler[formBeforesend].call(this, jqXHR, settings);
@@ -47,7 +47,7 @@
                     afxc.ajaxHandler.successStart.call(this, data, textStatus, jqXHR);
                 }
 
-                var formSuccess = this.data('form-success');
+                var formSuccess = this.attr('data-form-success');
 
                 if (typeof formSuccess !== 'undefined' && typeof afxc.injectAjaxHandler[formSuccess] === 'function') {
 
@@ -71,7 +71,7 @@
                     console.log('---------- Complete Start ------------');
                 }
 
-                var formComplete = this.data('form-complete');
+                var formComplete = this.attr('data-form-complete');
 
                 if (typeof formComplete !== 'undefined' && typeof afxc.injectAjaxHandler[formComplete] === 'function') {
 
@@ -99,7 +99,7 @@
                     afxc.ajaxHandler.errorStart.call(this, jqXHR, textStatus, errorThrown);
                 }
 
-                var formError = this.data('form-error');
+                var formError = this.attr('data-form-error');
 
                 if (typeof formError !== 'undefined' && typeof afxc.injectAjaxHandler[formError] === 'function') {
 
